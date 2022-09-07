@@ -1,6 +1,6 @@
 import express from "express";
-import controller from '../controllers/Book'
-import {Schemas, ValidateSchema} from "../middleware/ValidateSchema";
+import controller from '../controllers/book.controller'
+import {Schemas, ValidateSchema} from "../middleware";
 
 const router = express.Router()
 
@@ -10,4 +10,4 @@ router.get('/get', controller.readAll)
 router.patch('/update/:bookId', ValidateSchema(Schemas.book.update), controller.updateBook)
 router.delete('/delete/:bookId', controller.deleteBook)
 
-export = router
+export { router as bookRoutes }

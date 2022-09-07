@@ -1,8 +1,7 @@
 import Joi, {ObjectSchema} from 'joi'
 import {Request, Response, NextFunction} from 'express'
-import Logging from "../library/Logging";
-import {IAuthor} from "../models/Author";
-import {IBook} from "../models/Book";
+import {Logging} from "../library";
+import {IAuthor, IBook} from "../models";
 
 export const ValidateSchema = (schema: ObjectSchema) => {
     return async (req: Request, res: Response, next: NextFunction) => {

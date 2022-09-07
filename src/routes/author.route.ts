@@ -1,6 +1,6 @@
 import express from "express";
-import controller from '../controllers/Author'
-import {Schemas, ValidateSchema} from "../middleware/ValidateSchema";
+import controller from '../controllers/author.controller'
+import {Schemas, ValidateSchema} from "../middleware";
 
 const router = express.Router()
 
@@ -10,4 +10,4 @@ router.get('/get', controller.readAll)
 router.patch('/update/:authorId',ValidateSchema(Schemas.author.update), controller.updateAuthor)
 router.delete('/delete/:authorId', controller.deleteAuthor)
 
-export = router
+export { router as authorRoutes }

@@ -1,27 +1,27 @@
 import express from 'express';
 import http from 'http';
 import mongoose from 'mongoose';
-import {config} from './config/config'
-import Logging from "./library/Logging";
-import authorRoutes from './routes/Author'
-import bookRoutes from './routes/Book'
+import {commonConfig} from './config'
+import {Logging} from "./library";
+import {authorRoutes, bookRoutes} from './routes'
 
 const router = express()
 
-// Connect to mongodb
-mongoose.connect(config.mongo.url, {
+mongoose.connect(commonConfig.mongo.url, {
     retryWrites: true,
     w: 'majority',
 })
     .then(() => {
         Logging.info(`Connected to mongoDB`)
-        StartServer()
     })
     .catch((err) => {
         Logging.error(`Unable to connect mongoDB`)
         Logging.error(err)
     })
-// Only start server if connected mongoDB
+    .finally(() => {
+        StartServer()
+    })
+
 const StartServer = () => {
     router.use((req, res, next) => {
         // Log the request
@@ -73,7 +73,7 @@ const StartServer = () => {
         })
     })
 
-    http.createServer(router).listen(config.server.port, () => {
-        Logging.info(`Server is running on port ${config.server.port}`)
+    http.createServer(router).listen(commonConfig.server.port, () => {
+        Logging.info(`Server is running on port ${commonConfig.server.port}`)
     })
 }

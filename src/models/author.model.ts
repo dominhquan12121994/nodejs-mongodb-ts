@@ -17,4 +17,7 @@ const AuthorSchema: Schema = new Schema({
     versionKey: false
 })
 
-export default mongoose.model<IAuthorModel>('Author', AuthorSchema)
+// export default mongoose.model<IAuthorModel>('Author', AuthorSchema)
+const Author = mongoose.model<IAuthorModel>('Author', AuthorSchema)
+
+export { Author }

@@ -8,7 +8,7 @@ const MONGO_URL = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@cluster0.bw
 
 const SERVER_PORT = process.env.SERVER_PORT ? Number(process.env.SERVER_PORT) : 1337;
 
-export const config = {
+const commonConfig = {
     mongo: {
         url: MONGO_URL
     },
@@ -16,4 +16,6 @@ export const config = {
         port: SERVER_PORT
     }
 }
+
+export { commonConfig }
 

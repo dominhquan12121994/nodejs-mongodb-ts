@@ -19,7 +19,10 @@
   },
   "scripts": {
     "build": "tsc",
-    "start": "node build/server.js"
+    "dev": "nodemon src/server.ts",
+    "start": "node --inspect build/server.js",
+    "test": "nodemon src/test/index.ts",
+    "build-test": "tsc src/test/index.ts && node src/test/index.js"
   },
   "author": "",
   "license": "ISC"
